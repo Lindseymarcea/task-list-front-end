@@ -15,6 +15,34 @@ const TASKS = [
   },
 ];
 
+const taskData = (props) => {
+  const taskCompleteButtonClick = () => {
+    const updatedTask = {
+      id: props.id,
+      title: props.title,
+      isComplete: props.isComplete,
+    };
+
+    // Invoke the function passed in through the prop named "onUpdate"
+    // This function is referenced by the name "updateStudentData" in App
+    props.onUpdate(updatedTask);
+  };
+
+  const taskStatus = props.isComplete ? 'true' : 'false';
+
+  return (
+    <div>
+      <ul>
+        <li classTitle={taskStatus}>Task: {props.title}</li>
+        {/* <li>title: {props.title}</li>  */}
+      </ul>
+      <button onClick={taskCompleteButtonClick}>
+        Toggle if {props.id} is true or false
+      </button>
+    </div>
+  );
+};
+
 const App = () => {
   return (
     <div className="App">
